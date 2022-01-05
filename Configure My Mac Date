@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# Brandon Karon
+# Created: 18-11-2016
+# Modified: 22-11-2016
+# The purpose of this script is to identify the date when the "Configure My Mac" policy was executed
+
+if [ -e /usr/local/adobeit/com.adobe.lazarus.plist ]; then
+
+RESULT=`/usr/bin/defaults read /usr/local/adobeit/com.adobe.lazarus "configured_date"`
+	
+echo "<result>$RESULT</result>"
+
+else 
+echo "<result>Not Configured</result>"
+fi
+	
+exit 0

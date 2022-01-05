@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# Karthikeyan Marappan
+# Created: 21-11-2016
+# Scrip compare the installed version with published version. If published version is lesser than installed version, reports Extension Attribute as Yes else No
+
+# Gathers version info from from installed application
+installedversion=`defaults read /Applications/Adobe\ Acrobat\ DC/Adobe\ Acrobat.app/Contents/Info.plist CFBundleShortVersionString`
+
+# Use application version that is published in jamf PRO
+publishedversion=15.007.20033
+
+# Script
+if [ $publishedversion == $installedversion ];
+then
+echo "<result>No</result>"
+else
+awk 'BEGIN{if ('$installedversion'<'$publishedversion') exit 1}'
+if [ $? -eq 1 ]
+then
+echo "<result>Yes</result>"
+else
+echo "<result>No</result>"
+fi
+fi
+
+
+exit 0

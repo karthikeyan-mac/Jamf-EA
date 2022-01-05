@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# Kumaresh Kulal
+# Created: 07-07-2017
+# The purpose of this script is to display the computer GUID assigned to the machine by CrashPlan
+if [ -f /Library/Application\ Support/CrashPlan/.identity ]; then
+echo "<result>'`/bin/cat /Library/Application\ Support/CrashPlan/.identity | grep guid | sed s/guid\=//g`'</result>"
+else
+echo "<result>Not installed</result>"
+fi
+	
+exit 0

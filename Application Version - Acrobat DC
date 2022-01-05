@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Check Acrobat DC Version
+# Brandon Karon
+
+# If Acrobat DC IS installed then echo version # | If Acrobat DC is NOT installed then echo "Not Installed"
+
+if [ -d /Applications/Adobe\ Acrobat\ DC/Adobe\ Acrobat.app ] ; then
+
+RESULT=$( sudo defaults read /Applications/Adobe\ Acrobat\ DC/Adobe\ Acrobat.app/Contents/Info.plist CFBundleShortVersionString )
+	echo "<result>$RESULT</result>"
+else
+	echo "<result>Not Installed</result>"
+fi
+
+exit 0

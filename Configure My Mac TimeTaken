@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# Karthikeyan Marappan
+# Created: 12-04-2017
+# The purpose of this script is to identify if the "Configure My Mac" policy time taken
+
+if [ -e /usr/local/adobeit/com.adobe.lazarus.plist ]; then
+
+RESULT=`/usr/bin/defaults read /usr/local/adobeit/com.adobe.lazarus "ConfigTimeTaken"`
+	
+echo "<result>$RESULT</result>"
+
+else 
+echo "<result>Not Configured</result>"
+fi
+	
+exit 0
