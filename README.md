@@ -1,2 +1,2 @@
 # JAMFPro-EA
-All Extension Attributes in JAMF Pro
+Extension Attributes in JAMF Pro
