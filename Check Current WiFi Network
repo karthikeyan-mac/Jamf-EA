@@ -1,4 +1,25 @@
 #!/bin/sh
 
-result=`ipconfig getsummary $(networksetup -listallhardwareports | awk '/Hardware Port: Wi-Fi/{getline; print $2}') | awk -F ' SSID : '  '/ SSID : / {print $2}'`
-echo "<result>$result</result>"
+# Jamf Extension Attribute to retrieve the currently connected Wi-Fi SSID.
+# Jamf Extension Attribute by Karthikeyan Marappan
+# Verified: 17-03-2025
+# 
+
+# Get the device's Wi-Fi interface name (e.g., en0)
+wifi_interface=$(networksetup -listallhardwareports | awk '/Hardware Port: Wi-Fi/{getline; print $2}')
+
+# Ensure the Wi-Fi interface was found before proceeding
+if [ -n "$wifi_interface" ]; then
+    # Get the connected Wi-Fi SSID
+    ssid=$(ipconfig getsummary "$wifi_interface" | awk -F ' SSID : ' '/ SSID : / {print $2}')
+    
+    # If SSID is empty, set result as "Not connected to any Wi-Fi"
+    if [ -z "$ssid" ]; then
+        ssid="No SSID Connected"
+    fi
+else
+    ssid="Unknown"
+fi
+
+# Output result in Jamf-friendly format
+echo "<result>$ssid</result>"
