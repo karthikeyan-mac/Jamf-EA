@@ -20,5 +20,5 @@ else
 echo >/dev/null
 fi
 done
-rm -r /tmp/vmlist
+#rm -r /tmp/vmlist
 echo "</result>"
